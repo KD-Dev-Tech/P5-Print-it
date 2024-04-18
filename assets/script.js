@@ -17,8 +17,6 @@ const slides = [
 	}
 ]
 
-
-
 /* Variable general */ 
 
 const flecheGauche = document.querySelector(".arrow_left")
@@ -28,43 +26,48 @@ const img = document.querySelector("#banner img")
 const titre = document.querySelector("#banner p ")
 let index = 0
 
-console.log(titre);
-
-
-
-/* Fonction fleche Gauche*/ 
-function left (){
-	flecheGauche.addEventListener("click", () =>  {
-	index--
-		console.log("Fleche Gauche", img )
-
-		if (index < 0) {
-			index = slides.length -1  
-		}
-		const cheminImage = "./assets/images/slideshow/" + slides[index].image // Construire le chemin de la nouvelle image
-		img.src = cheminImage // Mettre à jour la source de l'image
-		titre.innerHTML = slides[index].tagLine
-		})				
-}
-left ()
-
 /* Fonction fleche Droite*/
+
 function right (){
 	flecheDroite.addEventListener("click", () =>  {
-	index++
-		console.log("Fleche droite", img )
-
-	if (index >= slides.length) {
-		index = 0  
-	}
-	const cheminImage = "./assets/images/slideshow/" + slides[index].image; // Construire le chemin de la nouvelle image
-	img.src = cheminImage 
-	titre.innerHTML = slides[index].tagLine
+		const slidesDots = document.querySelectorAll(".dots .dot")
+		slidesDots[index].classList.remove("dot_selected")
+		index++
+		console.log("Right", img)	
+		if (index >= slides.length) {
+			index = 0  
+		}
+		slidesDots[index].classList.add("dot_selected")
+		const cheminImage = "./assets/images/slideshow/" + slides[index].image; // Construire le chemin de la nouvelle image
+		img.src = cheminImage 
+		titre.innerHTML = slides[index].tagLine
 	})				
 }
 right ()
 
+
+/* Fonction fleche Gauche*/ 
+
+function left (){
+	flecheGauche.addEventListener("click", () =>  {
+		const slidesDots = document.querySelectorAll(".dots .dot")
+		slidesDots[index].classList.remove("dot_selected")
+		index--
+	console.log("Left", img);	
+		if (index < 0) {
+			index = slides.length -1  
+		}
+		slidesDots[index].classList.add("dot_selected")
+		const cheminImage = "./assets/images/slideshow/" + slides[index].image // Construire le chemin de la nouvelle image
+		img.src = cheminImage // Mettre à jour la source de l'image
+		titre.innerHTML = slides[index].tagLine
+		})		
+				
+}
+left ()
+
 /* Bullet point */
+
 function bulletPoint () {
 	for ( let i = 0; i < slides.length; i++) { /*  */
 	const dot = document.createElement("div") /* creation des div parents */

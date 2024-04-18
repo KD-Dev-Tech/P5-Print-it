@@ -17,40 +17,59 @@ const slides = [
 	}
 ]
 
-console.log(slides)
 
-/*Variable general */ 
+
+/* Variable general */ 
 
 const flecheGauche = document.querySelector(".arrow_left")
 const flecheDroite = document.querySelector(".arrow_right")
 const dots = document.querySelector(".dots")
+const img = document.querySelector("#banner img")
+const titre = document.querySelector("#banner p ")
+let index = 0
+
+console.log(titre);
 
 
-index = 0
 
 /* Fonction fleche Gauche*/ 
+function left (){
+	flecheGauche.addEventListener("click", () =>  {
+	index--
+		console.log("Fleche Gauche", img )
 
-flecheGauche.addEventListener("click", () =>  {
-
-
-	console.log("fleche gauche du carrousel")
-}) 
+		if (index < 0) {
+			index = slides.length -1  
+		}
+		const cheminImage = "./assets/images/slideshow/" + slides[index].image // Construire le chemin de la nouvelle image
+		img.src = cheminImage // Mettre à jour la source de l'image
+		titre.innerHTML = slides[index].tagLine
+		})				
+}
+left ()
 
 /* Fonction fleche Droite*/
+function right (){
+	flecheDroite.addEventListener("click", () =>  {
+	index++
+		console.log("Fleche droite", img )
 
-flecheDroite.addEventListener("click", () =>  {
-
-
-	console.log("fleche droite du carrousel")
-})
-
+	if (index >= slides.length) {
+		index = 0  
+	}
+	const cheminImage = "./assets/images/slideshow/" + slides[index].image; // Construire le chemin de la nouvelle image
+	img.src = cheminImage 
+	titre.innerHTML = slides[index].tagLine
+	})				
+}
+right ()
 
 /* Bullet point */
 function bulletPoint () {
-for ( let i = 0; i < slides.length; i++) {
-	const dot = document.createElement("div")
-	dot.classList.add("dot")
-	dots.appendChild(dot)
+	for ( let i = 0; i < slides.length; i++) { /*  */
+	const dot = document.createElement("div") /* creation des div parents */
+	dot.classList.add("dot") 				 /* Ajout d'une class  */
+	dots.appendChild(dot)  					/*  */
 	
 	if ( i === index) {
 		dot.classList.add("dot_selected")	

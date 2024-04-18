@@ -38,7 +38,7 @@ function right (){
 			index = 0  
 		}
 		slidesDots[index].classList.add("dot_selected")
-		const cheminImage = "./assets/images/slideshow/" + slides[index].image; // Construire le chemin de la nouvelle image
+		const cheminImage = "./assets/images/slideshow/" + slides[index].image; /*chemin de la nouvelle image*/
 		img.src = cheminImage 
 		titre.innerHTML = slides[index].tagLine
 	})				
@@ -58,8 +58,8 @@ function left (){
 			index = slides.length -1  
 		}
 		slidesDots[index].classList.add("dot_selected")
-		const cheminImage = "./assets/images/slideshow/" + slides[index].image // Construire le chemin de la nouvelle image
-		img.src = cheminImage // Mettre à jour la source de l'image
+		const cheminImage = "./assets/images/slideshow/" + slides[index].image 
+		img.src = cheminImage 		/* source de l'image */
 		titre.innerHTML = slides[index].tagLine
 		})		
 				
@@ -69,10 +69,10 @@ left ()
 /* Bullet point */
 
 function bulletPoint () {
-	for ( let i = 0; i < slides.length; i++) { /*  */
+	for ( let i = 0; i < slides.length; i++) { 
 	const dot = document.createElement("div") /* creation des div parents */
 	dot.classList.add("dot") 				 /* Ajout d'une class  */
-	dots.appendChild(dot)  					/*  */
+	dots.appendChild(dot)  					
 	
 	if ( i === index) {
 		dot.classList.add("dot_selected")	
